@@ -1,16 +1,16 @@
 {
-    "version": "2.8.0",
-    "description": "拼多多商家工作台（官方稳定版）",
+    "version": "2.9.0",
+    "description": "拼多多商家工作台",
     "homepage": "https://mms.pinduoduo.com/",
     "license": "Freeware",
     "url": "https://mms.pinduoduo.com/windows-download/PddMerchant.exe",
     "hash": "auto",
     "installer": {
-        "file": "PddMerchant.exe",
+        "type": "innosetup",
         "silent": "/S"
     },
     "uninstaller": {
-        "file": "Uninstall.exe",
+        "type": "innosetup",
         "silent": "/S"
     },
     "shortcuts": [
@@ -18,5 +18,18 @@
             "PddMerchant.exe",
             "拼多多商家工作台"
         ]
-    ]
+    ],
+    "checkver": {
+        "script": [
+            "$page = Invoke-WebRequest -Uri 'https://mms.pinduoduo.com/other/download_app/' -UseBasicParsing",
+            "$url = ($page.Links | Where-Object { $_.href -like '*volantis-open*' -and $_.href -like '*.exe' }).href",
+            "$version = ($url -split '_|\\.exe')[-2]",
+            "Write-Output \"$version|$url\""
+        ],
+        "regex": "(.*)\\|(.*)",
+        "replace": "${1}"
+    },
+    "autoupdate": {
+        "url": "$match2"
+    }
 }
