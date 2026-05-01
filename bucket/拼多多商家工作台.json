@@ -1,9 +1,10 @@
 {
-    "version": "2.7.2.14",
-    "description": "拼多多商家工作台",
+    "version": "2.8.0",
+    "description": "拼多多商家工作台（官方稳定版）",
     "homepage": "https://mms.pinduoduo.com/",
     "license": "Freeware",
     "url": "https://mms.pinduoduo.com/windows-download/PddMerchant.exe",
+    "hash": "auto",
     "installer": {
         "file": "PddMerchant.exe",
         "silent": "/S"
